@@ -19,7 +19,7 @@ joinSubject <- rbind(trainSubject, testSubject)
 
 # 2. Extracts only the measurements on the mean and standard 
 # deviation for each measurement. 
-features <- read.table("features.txt")
+features <- read.table("./data/features.txt")
 
 meanStdIndices <- grep("mean\\(\\)|std\\(\\)", features[, 2])
 
@@ -30,7 +30,7 @@ names(joindata) <- features[meanStdIndices, 2]
 
 # Step3. Uses descriptive activity names to name the activities in 
 # the data set
-activity <- read.table("activity_labels.txt")
+activity <- read.table(".data/activity_labels.txt")
 activity[, 2] <- tolower(gsub("_", "", activity[, 2]))
 substr(activity[2, 2], 8, 8) <- toupper(substr(activity[2, 2], 8, 8))
 substr(activity[3, 2], 8, 8) <- toupper(substr(activity[3, 2], 8, 8))
