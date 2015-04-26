@@ -1,5 +1,6 @@
 # 1. Merges the training and the test sets to create one data set.
 
+<<<<<<< HEAD
 trainData <- read.table("./train/X_train.txt")
 trainLabel <- read.table("./train/y_train.txt")
 table(trainLabel)
@@ -9,6 +10,17 @@ testData <- read.table("./test/X_test.txt")
 testLabel <- read.table("./test/y_test.txt") 
 table(testLabel) 
 testSubject <- read.table("./test/subject_test.txt")
+=======
+trainData <- read.table("./data/train/X_train.txt")
+trainLabel <- read.table("./data/train/y_train.txt")
+table(trainLabel)
+trainSubject <- read.table("./data/train/subject_train.txt")
+
+testData <- read.table("./data/test/X_test.txt")
+testLabel <- read.table("./data/test/y_test.txt") 
+table(testLabel) 
+testSubject <- read.table("./data/test/subject_test.txt")
+>>>>>>> origin/master
 
 joinData <- rbind(trainData, testData)
 
@@ -19,7 +31,7 @@ joinSubject <- rbind(trainSubject, testSubject)
 
 # 2. Extracts only the measurements on the mean and standard 
 # deviation for each measurement. 
-features <- read.table("features.txt")
+features <- read.table("./data/features.txt")
 
 meanStdIndices <- grep("mean\\(\\)|std\\(\\)", features[, 2])
 
@@ -30,7 +42,7 @@ names(joinData) <- features[meanStdIndices, 2]
 
 # Step3. Uses descriptive activity names to name the activities in 
 # the data set
-activity <- read.table("activity_labels.txt")
+activity <- read.table(".data/activity_labels.txt")
 activity[, 2] <- tolower(gsub("_", "", activity[, 2]))
 substr(activity[2, 2], 8, 8) <- toupper(substr(activity[2, 2], 8, 8))
 substr(activity[3, 2], 8, 8) <- toupper(substr(activity[3, 2], 8, 8))
@@ -66,5 +78,9 @@ for(i in 1:subjectLen) {
   }
 }
 head(result)
+<<<<<<< HEAD
 write.table(result, "data_with_means.txt", row.names= FALSE) 
 
+=======
+write.table(result, "data_with_means.txt") 
+>>>>>>> origin/master
