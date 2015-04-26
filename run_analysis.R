@@ -1,14 +1,14 @@
 # 1. Merges the training and the test sets to create one data set.
 
-trainData <- read.table("X_train.txt")
-trainLabel <- read.table("y_train.txt")
+trainData <- read.table("./train/X_train.txt")
+trainLabel <- read.table("./train/y_train.txt")
 table(trainLabel)
-trainSubject <- read.table("subject_train.txt")
+trainSubject <- read.table("./train/subject_train.txt")
 
-testData <- read.table("X_test.txt")
-testLabel <- read.table("y_test.txt") 
+testData <- read.table("./test/X_test.txt")
+testLabel <- read.table("./test/y_test.txt") 
 table(testLabel) 
-testSubject <- read.table("subject_test.txt")
+testSubject <- read.table("./test/subject_test.txt")
 
 joinData <- rbind(trainData, testData)
 
@@ -25,7 +25,7 @@ meanStdIndices <- grep("mean\\(\\)|std\\(\\)", features[, 2])
 
 joinData <- joinData[, meanStdIndices]
 
-names(joindata) <- features[meanStdIndices, 2]
+names(joinData) <- features[meanStdIndices, 2]
 
 
 # Step3. Uses descriptive activity names to name the activities in 
@@ -54,6 +54,7 @@ result <- matrix(NA, nrow=subjectLen*activityLen, ncol=columnLen)
 result <- as.data.frame(result)
 colnames(result) <- colnames(cleanedData)
 row <- 1
+
 for(i in 1:subjectLen) {
   for(j in 1:activityLen) {
     result[row, 1] <- sort(unique(joinSubject)[, 1])[i]
@@ -65,4 +66,5 @@ for(i in 1:subjectLen) {
   }
 }
 head(result)
-write.table(result, "data_with_means.txt") 
+write.table(result, "data_with_means.txt", row.names= FALSE) 
+
