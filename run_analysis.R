@@ -1,14 +1,14 @@
 # 1. Merges the training and the test sets to create one data set.
 
-trainData <- read.table("X_train.txt")
-trainLabel <- read.table("y_train.txt")
+trainData <- read.table("./data/train/X_train.txt")
+trainLabel <- read.table("./data/train/y_train.txt")
 table(trainLabel)
-trainSubject <- read.table("subject_train.txt")
+trainSubject <- read.table("./data/train/subject_train.txt")
 
-testData <- read.table("X_test.txt")
-testLabel <- read.table("y_test.txt") 
+testData <- read.table("./data/test/X_test.txt")
+testLabel <- read.table("./data/test/y_test.txt") 
 table(testLabel) 
-testSubject <- read.table("subject_test.txt")
+testSubject <- read.table("./data/test/subject_test.txt")
 
 joinData <- rbind(trainData, testData)
 
